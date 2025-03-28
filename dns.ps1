@@ -1,15 +1,15 @@
 ﻿# ASCII Art Header
 Write-Host @"
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡾⠃⠀⠀⠀⠀⠀⠀⠰⣶⡀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡿⠁⣴⠇⠀⠀⠀⠀⠸⣦⠈⢿⡄⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⡇⢸⡏⢰⡇⠀⠀⢸⡆⢸⡆⢸⡇⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡇⠘⣧⡈⠃⢰⡆⠘⢁⣼⠁⣸⡇⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣄⠘⠃⠀⢸⡇⠀⠘⠁⣰⡟⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠃⠀⠀⢸⡇⠀⠀⠘⠋⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠃⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡾⠃⠀⠀⠀⠀⠀⠀⠰⣶⡀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡿⠁⣴⠇⠀⠀⠀⠀⠸⣦⠈⢿⡄⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⡇⢸⡏⢰⡇⠀⠀⢸⡆⢸⡆⢸⡇⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡇⠘⣧⡈⠃⢰⡆⠘⢁⣼⠁⣸⡇⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣄⠘⠃⠀⢸⡇⠀⠘⠁⣰⡟⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠃⠀⠀⢸⡇⠀⠀⠘⠋⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠃⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀
 ⠀⢸⣿⣟⠉⢻⡟⠉⢻⡟⠉⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀
 ⠀⢸⣿⣿⣷⣿⣿⣶⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀
@@ -26,8 +26,11 @@ if (-not $isAdmin) {
     exit
 }
 
-# IPv4 DNS server address
-$customIPv4 = "9.9.9.9"
+# Quad9 IPv4 DNS server addresses (Primary & Secondary)
+$customIPv4 = @("9.9.9.9", "149.112.112.112")
+
+# Quad9 DNS over HTTPS (DoH) endpoint
+$DoHServer = "https://dns.quad9.net/dns-query"
 
 # Get all active network adapters
 $adapters = Get-NetAdapter | Where-Object { $_.Status -eq "Up" }
@@ -38,16 +41,20 @@ if ($adapters.Count -eq 0) {
 }
 
 foreach ($adapter in $adapters) {
-    Write-Host "Attempting to configure IPv4 DNS for adapter: $($adapter.Name)" -ForegroundColor Cyan
+    Write-Host "Attempting to configure Quad9 Secure DNS for adapter: $($adapter.Name)" -ForegroundColor Cyan
 
     try {
-        # Set IPv4 DNS
-        Write-Host "Setting IPv4 DNS for $($adapter.Name) to $customIPv4..." -ForegroundColor Yellow
+        # Set IPv4 DNS to Quad9 Secure DNS
+        Write-Host "Setting IPv4 DNS for $($adapter.Name) to $($customIPv4 -join ', ')..." -ForegroundColor Yellow
         Set-DnsClientServerAddress -InterfaceIndex $adapter.InterfaceIndex -ServerAddresses $customIPv4 -ErrorAction Stop
 
-        Write-Host "IPv4 DNS successfully updated for $($adapter.Name)." -ForegroundColor Green
+        # Enable DNS over HTTPS (DoH) using Quad9
+        Write-Host "Enabling DNS over HTTPS for $($adapter.Name) with Quad9 ($DoHServer)..." -ForegroundColor Yellow
+        Set-DnsClientDohServerAddress -ServerAddress $customIPv4[0] -DohTemplate $DoHServer -AllowFallbackToUdp $false -AutoUpgrade $true -ErrorAction Stop
+
+        Write-Host "Quad9 Secure DNS (IPv4 + DoH) successfully configured for $($adapter.Name)." -ForegroundColor Green
     } catch {
-        Write-Host "Error updating IPv4 DNS settings for adapter $($adapter.Name): $_" -ForegroundColor Red
+        Write-Host "Error updating Quad9 DNS settings for adapter $($adapter.Name): $_" -ForegroundColor Red
     }
 }
 
