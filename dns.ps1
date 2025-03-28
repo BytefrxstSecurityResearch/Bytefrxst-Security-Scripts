@@ -63,4 +63,20 @@ foreach ($adapter in $adapters) {
     }
 }
 
+# Force Windows to recognize Quad9 DoH by adding registry keys
+Write-Host "Forcing DoH activation via registry..." -ForegroundColor Cyan
+$regPath = "HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters\DohWellKnownServers"
+
+foreach ($dns in $DoHTemplates.Keys) {
+    try {
+        New-ItemProperty -Path $regPath -Name $dns -Value $DoHTemplates[$dns] -PropertyType String -Force
+        Write-Host "Registered DoH server: $dns -> $($DoHTemplates[$dns]) in Windows Registry" -ForegroundColor Green
+    } catch {
+        Write-Host "Failed to register DoH server $dns in registry: $_" -ForegroundColor Red
+    }
+}
+
+Write-Host "Restarting DNS client service to apply changes..." -ForegroundColor Yellow
+Restart-Service Dnscache -Force
+
 Write-Host "DNS configuration process completed. Verify in Windows Settings > Network & Internet > Ethernet/WiFi > DNS Settings." -ForegroundColor Green
