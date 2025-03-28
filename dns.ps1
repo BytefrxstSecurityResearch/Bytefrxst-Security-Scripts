@@ -26,14 +26,12 @@ if (-not $isAdmin) {
     exit
 }
 
-# Quad9 IPv4 DNS server addresses (Primary & Secondary)
-$customIPv4 = @("9.9.9.9", "149.112.112.112")
+# Quad9 IPv4 & IPv6 DNS addresses
+$Quad9_IPv4 = @("9.9.9.9", "149.112.112.112")
+$Quad9_IPv6 = @("2620:fe::fe", "2620:fe::9")
 
-# Quad9 DNS over HTTPS (DoH) endpoints
-$DoHTemplates = @{
-    "9.9.9.9" = "https://dns.quad9.net/dns-query"
-    "149.112.112.112" = "https://dns.quad9.net/dns-query"
-}
+# Quad9 DNS over HTTPS (DoH) endpoint
+$DoHServer = "https://dns.quad9.net/dns-query"
 
 # Get all active network adapters
 $adapters = Get-NetAdapter | Where-Object { $_.Status -eq "Up" }
@@ -44,39 +42,27 @@ if ($adapters.Count -eq 0) {
 }
 
 foreach ($adapter in $adapters) {
-    Write-Host "Attempting to configure Quad9 Secure DNS for adapter: $($adapter.Name)" -ForegroundColor Cyan
+    Write-Host "`nConfiguring Quad9 Secure DNS for adapter: $($adapter.Name)" -ForegroundColor Cyan
 
     try {
-        # Set IPv4 DNS to Quad9 Secure DNS
-        Write-Host "Setting IPv4 DNS for $($adapter.Name) to $($customIPv4 -join ', ')..." -ForegroundColor Yellow
-        Set-DnsClientServerAddress -InterfaceIndex $adapter.InterfaceIndex -ServerAddresses $customIPv4 -ErrorAction Stop
+        # Set IPv4 & IPv6 DNS addresses
+        Write-Host "Setting IPv4 DNS to $($Quad9_IPv4 -join ', ')..." -ForegroundColor Yellow
+        Set-DnsClientServerAddress -InterfaceIndex $adapter.InterfaceIndex -ServerAddresses $Quad9_IPv4 -ErrorAction Stop
 
-        # Register and enable DoH for Quad9
-        foreach ($dns in $DoHTemplates.Keys) {
-            Write-Host "Enabling DoH for $dns with template $($DoHTemplates[$dns])..." -ForegroundColor Yellow
-            Set-DnsClientDohServerAddress -ServerAddress $dns -DohTemplate $DoHTemplates[$dns] -AllowFallbackToUdp $false -AutoUpgrade $true -ErrorAction Stop
-        }
+        Write-Host "Setting IPv6 DNS to $($Quad9_IPv6 -join ', ')..." -ForegroundColor Yellow
+        Set-DnsClientServerAddress -InterfaceIndex $adapter.InterfaceIndex -ServerAddresses $Quad9_IPv6 -ErrorAction Stop
 
-        Write-Host "Quad9 Secure DNS (IPv4 + DoH) successfully configured for $($adapter.Name)." -ForegroundColor Green
+        # Enable DNS over HTTPS (DoH) for Quad9
+        Write-Host "Enabling DoH using Quad9 ($DoHServer)..." -ForegroundColor Yellow
+        Set-DnsClientDohServerAddress -ServerAddress $Quad9_IPv4[0] -DohTemplate $DoHServer -AllowFallbackToUdp $false -AutoUpgrade $true -ErrorAction Stop
+        Set-DnsClientDohServerAddress -ServerAddress $Quad9_IPv4[1] -DohTemplate $DoHServer -AllowFallbackToUdp $false -AutoUpgrade $true -ErrorAction Stop
+        Set-DnsClientDohServerAddress -ServerAddress $Quad9_IPv6[0] -DohTemplate $DoHServer -AllowFallbackToUdp $false -AutoUpgrade $true -ErrorAction Stop
+        Set-DnsClientDohServerAddress -ServerAddress $Quad9_IPv6[1] -DohTemplate $DoHServer -AllowFallbackToUdp $false -AutoUpgrade $true -ErrorAction Stop
+
+        Write-Host "✅ Quad9 Secure DNS (IPv4 + IPv6 + DoH) successfully applied to $($adapter.Name)." -ForegroundColor Green
     } catch {
-        Write-Host "Error updating Quad9 DNS settings for adapter $($adapter.Name): $_" -ForegroundColor Red
+        Write-Host "❌ Error configuring Quad9 for adapter $($adapter.Name): $_" -ForegroundColor Red
     }
 }
 
-# Force Windows to recognize Quad9 DoH by adding registry keys
-Write-Host "Forcing DoH activation via registry..." -ForegroundColor Cyan
-$regPath = "HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters\DohWellKnownServers"
-
-foreach ($dns in $DoHTemplates.Keys) {
-    try {
-        New-ItemProperty -Path $regPath -Name $dns -Value $DoHTemplates[$dns] -PropertyType String -Force
-        Write-Host "Registered DoH server: $dns -> $($DoHTemplates[$dns]) in Windows Registry" -ForegroundColor Green
-    } catch {
-        Write-Host "Failed to register DoH server $dns in registry: $_" -ForegroundColor Red
-    }
-}
-
-Write-Host "Restarting DNS client service to apply changes..." -ForegroundColor Yellow
-Restart-Service Dnscache -Force
-
-Write-Host "DNS configuration process completed. Verify in Windows Settings > Network & Internet > Ethernet/WiFi > DNS Settings." -ForegroundColor Green
+Write-Host "`n🚀 DNS configuration process completed. All active adapters should now be using Quad9 encrypted DNS." -ForegroundColor Green
